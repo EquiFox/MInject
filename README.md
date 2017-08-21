@@ -9,7 +9,10 @@ Mono Framework Interaction / Injection Library for .NET (C++/CLI)
 - Provides experimental safety mechanisms to hide the injected assembly from `AssemblyLoad` callbacks and `GetAssemblies()`
 
 ## Download
-You can find the most recent releases here: https://github.com/EquiFox/MInject/releases
+You can find the most recent releases here: https://github.com/EquiFox/MInject/releases  
+  
+You don't have time to waste with coding ? No problem !  
+Just grab my pre-compiled injector (based on this library) here: https://github.com/EquiFox/MInjector
 
 ## Usage
 Add `MInject.dll` to your .NET project references.
