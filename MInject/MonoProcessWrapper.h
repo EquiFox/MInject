@@ -9,34 +9,34 @@ namespace MInject {
 	public ref class MonoProcess
 	{
 	public:
-			//Domain
-			IntPtr GetRootDomain();
+		//Domain
+		IntPtr GetRootDomain();
 
-			//Assembly
-			IntPtr AssemblyLoadFromFull(IntPtr p_ImageAddress);
-			IntPtr AssemblyGetImage(IntPtr p_AssemblyAddress);
+		//Assembly
+		IntPtr AssemblyLoadFromFull(IntPtr p_ImageAddress);
+		IntPtr AssemblyGetImage(IntPtr p_AssemblyAddress);
 
-			//Images
-			IntPtr ImageOpenFromDataFull(array<System::Byte>^ p_AssemblyBytes);
+		//Images
+		IntPtr ImageOpenFromDataFull(array<System::Byte>^ p_AssemblyBytes);
 
-			//Threads
-			IntPtr ThreadAttach(IntPtr p_DomainAddress);
-			int ThreadDetach(IntPtr p_DomainAddress);
+		//Threads
+		IntPtr ThreadAttach(IntPtr p_DomainAddress);
+		int ThreadDetach(IntPtr p_DomainAddress);
 
-			//SecurityManager
-			void SecuritySetMode(int p_Mode);
+		//SecurityManager
+		void SecuritySetMode(int p_Mode);
 
-			//Class
-			IntPtr ClassFromName(IntPtr p_ImageAddress, String^ p_Namespace, String^ p_ClassName);
-			IntPtr ClassGetMethodFromName(IntPtr p_ImageAddress, String^ p_MethodName);
+		//Class
+		IntPtr ClassFromName(IntPtr p_ImageAddress, String^ p_Namespace, String^ p_ClassName);
+		IntPtr ClassGetMethodFromName(IntPtr p_ImageAddress, String^ p_MethodName);
 
-			//Utilities	
-			IntPtr RuntimeInvoke(IntPtr p_MethodAddress);
-			bool DisableAssemblyLoadCallback();
-			bool EnableAssemblyLoadCallback();
-			bool HideLastAssembly(IntPtr p_DomainAddress);
+		//Utilities	
+		IntPtr RuntimeInvoke(IntPtr p_MethodAddress);
+		bool DisableAssemblyLoadCallback();
+		bool EnableAssemblyLoadCallback();
+		bool HideLastAssembly(IntPtr p_DomainAddress);
 
-			static bool Attach(Process^ p_Process, [OutAttribute] MonoProcess^% p_MonoProcess);
+		static bool Attach(Process^ p_Process, [OutAttribute] MonoProcess^% p_MonoProcess);
 
 	protected: 
 		!MonoProcess() {
