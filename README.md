@@ -3,6 +3,7 @@ Mono Framework Interaction / Injection Library for .NET (C++/CLI)
 
 ## Features
 - Core is in pure C++ for reliabilty and performance
+- No locking on the injected assembly file
 - Native MonoProcess class is exposed to .NET throught a custom managed wrapper
 - Allow easy interaction with the Mono namespace
 - Allow easy injection into Mono namespace
