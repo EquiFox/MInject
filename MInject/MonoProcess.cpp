@@ -133,7 +133,7 @@ namespace MInjectNative
 			nullptr
 		};
 
-		return mono_runtime_invoke_function.Call(args, m_WorkerThread).result();
+		return mono_runtime_invoke_function.Call(args, m_InnerProcess.threads().getMain()).result();
 	}
 	
 	bool MonoProcess::DisableAssemblyLoadCallback()
