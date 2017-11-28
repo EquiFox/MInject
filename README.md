@@ -59,7 +59,7 @@ Tested and confirmed working on `Albion Online` (x86) &  `Escape from Tarkov` (x
 Since multiple variants of Mono exists, using these features on any other Mono process might result in a crash.  
 **Feel free to open an issue if a specific process isn't working and I'll take a look.**
 
-*Note: Disabling AssemblyLoad Callbacks also prevents the assembly to be listed by GetAssemblies(), it's the recommended way to go.*
+***Note**: Disabling AssemblyLoad Callbacks also prevents the assembly to be listed by GetAssemblies(), it's the recommended way to go.*
 
 ## Compile Yourself
 - Requires Visual Studio 2017 (Toolset v141)
