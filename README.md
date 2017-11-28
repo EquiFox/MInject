@@ -41,10 +41,7 @@ if (MonoProcess.Attach(targetProcess, out monoProcess))
     IntPtr assemblyImage = monoProcess.AssemblyGetImage(assemblyPointer);
     IntPtr classPointer = monoProcess.ClassFromName(assemblyImage, "TestInjection", "Loader");
     IntPtr methodPointer = monoProcess.ClassGetMethodFromName(classPointer, "Init");
-    
-    //Remove the last loaded assembly (Ours) from domain_assemblies field
-    monoProcess.HideLastAssembly(monoDomain);
-    
+        
     //Finally invoke the TestInjection.Loader.Init method
     monoProcess.RuntimeInvoke(methodPointer);
 
@@ -56,11 +53,12 @@ if (MonoProcess.Attach(targetProcess, out monoProcess))
 }
 ```
 
-## Safety Mechanisms
-These features are currently only supported for `x86 processes`.  
-Tested and confirmed working on `Albion Online` as of August 21, 2017.  
+## Safety Mechanisms 
+Tested and confirmed working on `Albion Online` (x86) &  `Escape from Tarkov` (x64) as of November 27th, 2017.  
   
 Since multiple variants of Mono exists, using these features on any other Mono process might result in a crash.
+
+Note: Disabling AssemblyLoad Callbacks also prevents the assembly to be listed by GetAssemblies(), it's the recommended way to go.
 
 ## Compile Yourself
 - Requires Visual Studio 2017 (Toolset v141)
