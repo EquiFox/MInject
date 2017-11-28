@@ -152,15 +152,22 @@ namespace MInjectNative
 			if (m_AssemblyLoadPtr == NULL)
 			{
 				auto exportData = m_InnerProcess.modules().GetExport(m_MonoModule, "mono_assembly_invoke_load_hook");
+
+			#ifdef USE32
 				auto assemblyLoadHookRefAddr = exportData->procAddress + 6;
 				m_AssemblyLoadPtr = m_InnerProcess.memory().Read<int>(assemblyLoadHookRefAddr).result();
+			#else
+				auto assemblyLoadHookRefAddr = exportData->procAddress + 13;
+				int assemblyLoadHookOffset = m_InnerProcess.memory().Read<int>(assemblyLoadHookRefAddr).result();
+				m_AssemblyLoadPtr = (exportData->procAddress + 17) + assemblyLoadHookOffset;
+			#endif				
 			}
 
 			//Keep the original pointer value so we can restore it.
-			m_OriginalAssemblyLoadPtrVal = m_InnerProcess.memory().Read<int>(m_AssemblyLoadPtr).result();
+			m_OriginalAssemblyLoadPtrVal = m_InnerProcess.memory().Read<blackbone::ptr_t>(m_AssemblyLoadPtr).result();
 
 			//Null the pointer so it doesn't points to existing callback list anymore
-			m_InnerProcess.memory().Write<int>(m_AssemblyLoadPtr, 0);
+			m_InnerProcess.memory().Write<blackbone::ptr_t>(m_AssemblyLoadPtr, 0);
 
 			return true;
 		}
@@ -172,7 +179,7 @@ namespace MInjectNative
 	{
 		if (m_OriginalAssemblyLoadPtrVal != NULL)
 		{
-			m_InnerProcess.memory().Write<int>(m_AssemblyLoadPtr, m_OriginalAssemblyLoadPtrVal);
+			m_InnerProcess.memory().Write<blackbone::ptr_t>(m_AssemblyLoadPtr, m_OriginalAssemblyLoadPtrVal);
 			m_OriginalAssemblyLoadPtrVal = NULL;
 
 			return true;

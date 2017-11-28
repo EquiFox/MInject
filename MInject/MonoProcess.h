@@ -42,8 +42,8 @@ namespace MInjectNative
 		blackbone::ThreadPtr m_WorkerThread;
 		blackbone::ModuleDataPtr m_MonoModule;
 
-		int m_AssemblyLoadPtr = NULL;
-		int m_OriginalAssemblyLoadPtrVal = NULL;
+		blackbone::ptr_t m_AssemblyLoadPtr = NULL;
+		blackbone::ptr_t m_OriginalAssemblyLoadPtrVal = NULL;
 
 		template<typename T>
 		auto GetMethodFromExport(char* p_MethodName);
